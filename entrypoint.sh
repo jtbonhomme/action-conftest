@@ -36,10 +36,9 @@ run_conftest() {
     flags+=(--namespace ${NAMESPACE})
   fi
 
+  echo "[DEBUG] data: ${DATA}" >&2
   if [[ -n ${DATA} ]]; then
     flags+=(--data ${DATA})
-      echo "[DEBUG] data: ${DATA}" >&2
-      echo "[DEBUG] flags: ${flags}" >&2
   fi
 
   if ${ALL_NAMESPACES}; then
@@ -59,6 +58,9 @@ run_conftest() {
     echo "[DEBUG] no files to be passed to conftest"
     return 0
   fi
+
+  echo "[DEBUG] flags: ${flags}" >&2
+  echo "[DEBUG] files: ${files}" >&2
 
   conftest test ${flags[@]} \
     --no-color --output table \
