@@ -8,6 +8,7 @@ POLICY="${INPUT_POLICY:-policy}"
 FILES=( ${INPUT_FILES} )
 MATCHES=( ${INPUT_MATCHES} )
 NAMESPACE="${INPUT_NAMESPACE}"
+DATA="${INPUT_DATA}"
 ALL_NAMESPACES="${INPUT_ALL_NAMESPACES:-false}"
 
 match() {
@@ -35,6 +36,10 @@ run_conftest() {
     flags+=(--namespace ${NAMESPACE})
   fi
 
+  if [[ -n ${DATA} ]]; then
+    flags+=(--data ${DATA})
+  fi
+
   if ${ALL_NAMESPACES}; then
     flags+=(--all-namespaces)
   fi
@@ -54,7 +59,7 @@ run_conftest() {
   fi
 
   conftest test ${flags[@]} \
-    --no-color \
+    --no-color --output table \
     --policy "${POLICY}" \
     "${files[@]}"
 }
