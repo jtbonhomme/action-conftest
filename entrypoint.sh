@@ -2,6 +2,7 @@
 
 # do not expand glob in this shell script
 set -f
+set -x
 
 BASE="${INPUT_PATH:-.}"
 POLICY="${INPUT_POLICY:-policy}"
@@ -59,8 +60,8 @@ run_conftest() {
     return 0
   fi
 
-  echo "[DEBUG] flags: ${flags}" >&2
-  echo "[DEBUG] files: ${files}" >&2
+  echo "[DEBUG] flags: ${flags[@]}" >&2
+  echo "[DEBUG] files: ${files[@]}" >&2
 
   conftest test ${flags[@]} \
     --no-color --output table \
