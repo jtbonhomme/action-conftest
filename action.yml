@@ -21,6 +21,10 @@ inputs:
     description: 'Namespace name running with conftest testing'
     required: false
     default: ''
+  data:
+    description: 'Data file to be imported during conftest testing'
+    required: false
+    default: ''
   all_namespaces:
     description: 'Enable --all-namespaces flag'
     required: false
