@@ -38,6 +38,8 @@ run_conftest() {
 
   if [[ -n ${DATA} ]]; then
     flags+=(--data ${DATA})
+      echo "[DEBUG] data: ${DATA}" >&2
+      echo "[DEBUG] flags: ${flags}" >&2
   fi
 
   if ${ALL_NAMESPACES}; then
